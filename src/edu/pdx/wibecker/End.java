@@ -4,17 +4,17 @@ import java.util.Scanner;
 
 public class End extends Event
 {
-    End()
+    public End()
     {
         super();
     }
 
-    End(String name, String description)
+    public End(String name, String description)
     {
         super(name, description, "", "");
     }
 
-    public void create()
+    public Event create()
     {
         input = new Scanner(System.in);
         System.out.println("Creating new End event");
@@ -22,6 +22,8 @@ public class End extends Event
         name = input.nextLine();
         System.out.print("Event description: ");
         description = input.nextLine();
+
+        return this;
     }
 
     public String encounter()

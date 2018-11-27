@@ -6,21 +6,23 @@ public class Random extends Event
 {
     java.util.Random random_number = new java.util.Random();
 
-    Random()
+    public Random()
     {
         super();
     }
 
-    Random(String name, String description, String left_path, String right_path)
+    public Random(String name, String description, String left_path, String right_path)
     {
         super(name, description, left_path, right_path);
     }
 
-    public void create()
+    public Event create()
     {
         input = new Scanner(System.in);
         System.out.println("Creating new Random event");
         super.create();
+
+        return this;
     }
 
     public String encounter()

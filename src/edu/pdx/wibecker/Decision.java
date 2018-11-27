@@ -21,7 +21,7 @@ public class Decision extends Event
         this.choice2 = new String(choice2);
     }
 
-    public void create()
+    public Event create()
     {
         input = new Scanner(System.in);
         System.out.println("Creating new Decision event");
@@ -30,6 +30,8 @@ public class Decision extends Event
         choice1 = input.nextLine();
         System.out.print("Choice 2: ");
         choice2 = input.nextLine();
+
+        return this;
     }
 
     public String encounter()

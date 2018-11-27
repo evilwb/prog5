@@ -6,25 +6,27 @@ public class Puzzle extends Event
 {
     String answer;
 
-    Puzzle()
+    public Puzzle()
     {
         super();
         answer = null;
     }
 
-    Puzzle(String name, String description, String left_path, String right_path, String answer)
+    public Puzzle(String name, String description, String left_path, String right_path, String answer)
     {
         super(name, description, left_path, right_path);
         this.answer = new String(answer);
     }
 
-    public void create()
+    public Event create()
     {
         input = new Scanner(System.in);
         System.out.println("Creating new Puzzle event");
         super.create();
         System.out.print("Answer: ");
         answer = input.nextLine();
+
+        return this;
     }
 
     public String encounter()
