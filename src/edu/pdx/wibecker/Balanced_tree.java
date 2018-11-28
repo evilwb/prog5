@@ -51,7 +51,8 @@ public class Balanced_tree
             }
             else
             {
-                root.children[i] = insert(root.children[i], to_add);
+                //root.children[i] = insert(root.children[i], to_add);
+                insert(root.children[i], to_add);
             }
         }
         return root;

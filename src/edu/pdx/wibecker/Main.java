@@ -23,7 +23,7 @@ public class Main
         Event event6 = new End("crusher", "You ran into a spike trap.\nGame Over");
         Event event7 = new End("dart", "You ran into a spike trap.\nGame Over");
 
-        for(char i = 'a'; i <= 'h'; ++i)
+        for(char i = 'a'; i <= 'z'; ++i)
         {
             Event temp = new End(String.valueOf(i), "test");
             tree.insert(temp);
@@ -34,8 +34,8 @@ public class Main
         tree.insert(event3);
         tree.insert(event4);
         tree.insert(event5);
-       // tree.insert(event6);
-       // tree.insert(event7);
+        tree.insert(event6);
+        tree.insert(event7);
 
         tree.display();
     }
