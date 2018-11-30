@@ -58,6 +58,32 @@ public class Balanced_tree
         return root;
     }
 
+    public Event retrieve(String name)
+    {
+        return retrieve(name, this.root);
+    }
+
+    private Event retrieve(String name, Node root)
+    {
+        for(int i = 0; i < root.size; i++)
+        {
+            if (root.data[i].is_equal(name))
+            {
+                return root.data[i];
+            }
+            else if(root.data[i].greater_than(name))
+            {
+                return retrieve(name, root.children[i]);
+            }
+            else
+            {
+                return retrieve(name, root.children[i+1]);
+            }
+        }
+        return null;
+    }
+
+
     public void display()
     {
         display(this.root);
