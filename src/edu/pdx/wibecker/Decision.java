@@ -1,5 +1,11 @@
+// William Becker - CS202 - 11/29/18
+// Decision.java
+
 package edu.pdx.wibecker;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Decision extends Event
@@ -32,6 +38,66 @@ public class Decision extends Event
         choice2 = input.nextLine();
 
         return this;
+    }
+
+    public void write(BufferedWriter file) throws IOException
+    {
+        file.append("decision#" + name + "#" + description + "#" + left_path + "#" + right_path + "#" + choice1 + "#" + choice2);
+        file.append("\n");
+    }
+
+    public void edit()
+    {
+        input = new Scanner(System.in);
+        char response;
+        boolean editing = true;
+
+        while(editing == true)
+        {
+            System.out.format("%-20s", "    Event Type: ");
+            System.out.println("Decision");
+            super.edit();
+            System.out.format("%-20s", "(1) Choice 1: ");
+            System.out.println(choice1);
+            System.out.format("%-20s", "(2) Choice 2: ");
+            System.out.println(choice2);
+            System.out.println("(x) Done editing");
+            System.out.print("Choose an attribute to edit: ");
+            response = input.next().charAt(0);
+            input.nextLine();
+
+            switch (Character.toLowerCase(response))
+            {
+                case 'd':
+                    System.out.print("Enter a new description: ");
+                    description = input.nextLine();
+                    break;
+
+                case 'l':
+                    System.out.print("Enter a new left path: ");
+                    left_path = input.nextLine();
+                    break;
+
+                case 'r':
+                    System.out.print("Enter a new right path: ");
+                    right_path = input.nextLine();
+                    break;
+
+                case '1':
+                    System.out.print("Enter a new choice 1: ");
+                    choice1 = input.nextLine();
+                    break;
+
+                case '2':
+                    System.out.print("Enter a new choice 2: ");
+                    choice2 = input.nextLine();
+                    break;
+
+                case 'x':
+                    editing = false;
+                    break;
+            }
+        }
     }
 
     public String encounter()

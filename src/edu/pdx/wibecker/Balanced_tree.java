@@ -1,4 +1,11 @@
+// William Becker - CS202 - 11/29/18
+// Balanced_tree.java
+
 package edu.pdx.wibecker;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Balanced_tree
 {
@@ -65,19 +72,28 @@ public class Balanced_tree
 
     private Event retrieve(String name, Node root)
     {
-        for(int i = 0; i < root.size; i++)
+        if(root != null)
         {
-            if (root.data[i].is_equal(name))
+            Event result = null;
+            int i;
+            for (i = 0; i < root.size; i++)
             {
-                return root.data[i];
+                if (root.data[i].equal_to(name))
+                {
+                    return root.data[i];
+                } else if (root.data[i].greater_than(name))
+                {
+                    result = retrieve(name, root.children[i]);
+                }
+                if(result != null)
+                {
+                    return result;
+                }
             }
-            else if(root.data[i].greater_than(name))
+            result = retrieve(name, root.children[i]);
+            if(result != null)
             {
-                return retrieve(name, root.children[i]);
-            }
-            else
-            {
-                return retrieve(name, root.children[i+1]);
+                return result;
             }
         }
         return null;
@@ -116,6 +132,51 @@ public class Balanced_tree
                 display(root.children[2]);
                 root.data[2].display();
                 display(root.children[3]);
+            }
+        }
+    }
+
+    public void write_all(BufferedWriter file)
+    {
+        try
+        {
+            file = new BufferedWriter(new FileWriter("./tree.txt"));
+            write_all(this.root, file);
+            file.close();
+        }
+        catch (IOException error)
+        {
+            System.out.println(error);
+        }
+    }
+
+    private void write_all(Node root, BufferedWriter file) throws IOException
+    {
+        if(root != null)
+        {
+            if(root.size == 1)
+            {
+                write_all(root.children[0], file);
+                root.data[0].write(file);
+                write_all(root.children[1], file);
+            }
+            else if(root.size == 2)
+            {
+                write_all(root.children[0], file);
+                root.data[0].write(file);
+                write_all(root.children[1], file);
+                root.data[1].write(file);
+                write_all(root.children[2], file);
+            }
+            else
+            {
+                write_all(root.children[0], file);
+                root.data[0].write(file);
+                write_all(root.children[1], file);
+                root.data[1].write(file);
+                write_all(root.children[2], file);
+                root.data[2].write(file);
+                write_all(root.children[3], file);
             }
         }
     }
