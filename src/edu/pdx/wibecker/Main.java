@@ -3,14 +3,16 @@
 
 package edu.pdx.wibecker;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Scanner;
-import java.io.BufferedWriter;
 
 public class Main
 {
     private Scanner input = new Scanner(System.in);
     private Balanced_tree tree = new Balanced_tree();
-    BufferedWriter file;
+    File in = new File("./tree");
+    Scanner file;
 
     public static void main(String[] args)
     {
@@ -20,35 +22,25 @@ public class Main
 
     private void run()
     {
-        /*
-        //For testing
-        //Examples:
-        Event event1 = new Decision("tunnel", "There is a split with one tunnel going left and one going right.", "left", "right", "left", "right");
-        Event event2 = new Random("teleport", "You find a teleporter.", "left", "right");
-        Event event3 = new Puzzle("math", "What is 2+5?", "left", "right", "7");
-        Event event4 = new End("exit", "You have found the exit.");
-
-        tree.insert(event1);
-        tree.insert(event2);
-        tree.insert(event3);
-        tree.insert(event4);
-        */
-
-        /*
-        //Insert all letter:
-        for(char i = 'a'; i <= 'z'; ++i)
+        try
         {
-            Event temp = new End(String.valueOf(i), "test");
-            tree.insert(temp);
+            Scanner file = new Scanner(in);
         }
-        */
+        catch(IOException error)
+        {
+            System.out.println(error);
+        }
 
         boolean running = true;
         char response;
 
+        while(file.hasNextLine())
+        {
+            add_event(file);
+        }
+
         while(running == true)
         {
-
             System.out.println("\n\n");
             System.out.println("(a) Add Event\n(e) Edit Event\n(l) List Events\n(s) Save Tree\n(q) Quit Program");
             System.out.print("Choose an action: ");
@@ -96,39 +88,35 @@ public class Main
         selected_event = tree.retrieve(event_name);
         if(selected_event != null)
         {
+
             selected_event.edit();
         }
     }
 
-    private void add_event()
+    private void add_event(Scanner file)
     {
-        char response;
-
-        System.out.println("(d) Decision\n(r) Random\n(e) End\n(p) Puzzle");
-        System.out.print("Choose an event type: ");
-        response = input.next().charAt(0);
-        input.nextLine();
-
-        switch(Character.toLowerCase(response))
+        switch(file.next("#"))
         {
-            case 'd' :
-                Decision decision = new Decision();
-                tree.insert(decision.create());
+            case "decision" :
+                Decision decision = new Decision(file.next("#"), file.next("#"), file.next("#"),
+                                                file.next("#"), file.next("#"), file.nextLine());
+                tree.insert(decision);
                 break;
 
-            case 'r' :
-                Random random = new Random();
-                tree.insert(random.create());
+            case "random" :
+                Random random = new Random(file.next("#"), file.next("#"), file.next("#"), file.nextLine());
+                tree.insert(random);
                 break;
 
-            case 'e' :
-                End end = new End();
-                tree.insert(end.create());
+            case "end" :
+                End end = new End(file.next("#"), file.nextLine());
+                tree.insert(end);
                 break;
 
-            case 'p' :
-                Puzzle puzzle = new Puzzle();
-                tree.insert(puzzle.create());
+            case "puzzle" :
+                Puzzle puzzle = new Puzzle(file.next("#"), file.next("#"), file.next("#"),
+                                            file.next("#"), file.nextLine());
+                tree.insert(puzzle);
                 break;
         }
     }
