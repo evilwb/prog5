@@ -98,12 +98,14 @@ public class Puzzle extends Event
         {
             System.out.println("Your answer was correct\nPress Enter to continue");
             input.nextLine();
+            path_used = false;
             return left_path;
         }
         else
         {
             System.out.println("Your answer was incorrect\nPress return to continue");
             input.nextLine();
+            path_used = true;
             return right_path;
         }
     }

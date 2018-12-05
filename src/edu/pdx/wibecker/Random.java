@@ -85,10 +85,12 @@ public class Random extends Event
 
         if(random_number.nextInt(2) == 0)
         {
+            path_used = false;
             return left_path;
         }
         else
         {
+            path_used = true;
             return right_path;
         }
     }

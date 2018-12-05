@@ -79,7 +79,7 @@ public class End extends Event
     public String encounter()
     {
         input = new Scanner(System.in);
-        System.out.println(description + "\nThanks for playing\nPress Enter to end the program");
+        System.out.println(description + "\nThanks for playing\nPress Enter to continue");
         input.nextLine();
 
         return null;

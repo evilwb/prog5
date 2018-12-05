@@ -14,6 +14,7 @@ abstract public class Event
     protected String left_path;
     protected String right_path;
     protected Scanner input;
+    protected boolean path_used;
 
     public Event()
     {
@@ -48,7 +49,14 @@ abstract public class Event
 
     public void display()
     {
-        System.out.format("%-24s%-35s%-35s", name, "Left Path: " + left_path, "Right Path: " + right_path);
+        if(path_used)
+        {
+            System.out.format("%-24s%-24s%-24s", name, right_path, left_path);
+        }
+        else
+        {
+            System.out.format("%-24s%-24s%-24s", name, left_path, right_path);
+        }
         System.out.println();
     }
 

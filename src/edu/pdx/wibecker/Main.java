@@ -11,6 +11,7 @@ public class Main
 {
     private Scanner input = new Scanner(System.in);
     private Balanced_tree tree = new Balanced_tree();
+    private Array_list list = new Array_list();
     private File in = new File("./tree.txt");
     private Scanner file;
     private String next_event;
@@ -46,8 +47,12 @@ public class Main
         {
             Event curr_event = tree.retrieve(next_event);
             next_event = curr_event.encounter();
+            list.insert(curr_event);
         }
         input.close();
+
+        System.out.println("Path through the events:");
+        list.display();
     }
 
     private void edit_event()

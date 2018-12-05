@@ -121,10 +121,12 @@ public class Decision extends Event
 
         if(selection == 1)
         {
+            path_used = false;
             return left_path;
         }
         else
         {
+            path_used = true;
             return right_path;
         }
     }
