@@ -1,0 +1,9 @@
+tunnels
+end#croc pit#You fall into trap door that opened under you. It leads to a pit of crocadiles who promptly eat you. Game Over#
+end#crusher#The walls start closing in around you trash compactor style, except there is no one to open the door for you. Game Over#
+end#exit#You found the exit to the cave. You win!#
+puzzle#math add#What is 2+7?#exit#crusher#9#
+puzzle#math mult#What is 3 times 4?#exit#croc pit#12#
+random#slide#You loose your footing in a steep rock tunnel and start sliding. Who knows where you will end up?#spike#math add#
+end#spike#You slide into a spike which impales you to death. Game Over#
+decision#tunnels#There is a tunnel going left and a tunnel going right. Choose a direction.#math mult#slide#left#right#
