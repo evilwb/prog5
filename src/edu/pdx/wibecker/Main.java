@@ -11,8 +11,10 @@ public class Main
 {
     private Scanner input = new Scanner(System.in);
     private Balanced_tree tree = new Balanced_tree();
-    File in = new File("./tree");
-    Scanner file;
+    private File in = new File("./tree.txt");
+    private Scanner file;
+    private String next_event;
+
 
     public static void main(String[] args)
     {
@@ -24,7 +26,7 @@ public class Main
     {
         try
         {
-            Scanner file = new Scanner(in);
+            file = new Scanner(in).useDelimiter("#");
         }
         catch(IOException error)
         {
@@ -34,45 +36,16 @@ public class Main
         boolean running = true;
         char response;
 
+        next_event = file.nextLine();
         while(file.hasNextLine())
         {
             add_event(file);
         }
 
-        while(running == true)
+        while(next_event != null)
         {
-            System.out.println("\n\n");
-            System.out.println("(a) Add Event\n(e) Edit Event\n(l) List Events\n(s) Save Tree\n(q) Quit Program");
-            System.out.print("Choose an action: ");
-            response = input.next().charAt(0);
-            input.nextLine();
-
-            switch(Character.toLowerCase(response))
-            {
-                case 'a':
-                    add_event();
-                    break;
-
-                case 'e':
-                    edit_event();
-                    break;
-
-                case 'l':
-                    System.out.println("\n");
-                    tree.display();
-                    System.out.println("\nPress Enter to continue");
-                    input.nextLine();
-                    break;
-
-                case 's':
-                    tree.write_all(file);
-                    break;
-
-                case 'q':
-                    running = false;
-                    break;
-            }
-
+            Event curr_event = tree.retrieve(next_event);
+            next_event = curr_event.encounter();
         }
         input.close();
     }
@@ -95,29 +68,28 @@ public class Main
 
     private void add_event(Scanner file)
     {
-        switch(file.next("#"))
+        switch(file.next())
         {
             case "decision" :
-                Decision decision = new Decision(file.next("#"), file.next("#"), file.next("#"),
-                                                file.next("#"), file.next("#"), file.nextLine());
+                Decision decision = new Decision(file.next(), file.next(), file.next(), file.next(), file.next(), file.next());
                 tree.insert(decision);
                 break;
 
             case "random" :
-                Random random = new Random(file.next("#"), file.next("#"), file.next("#"), file.nextLine());
+                Random random = new Random(file.next(), file.next(), file.next(), file.next());
                 tree.insert(random);
                 break;
 
             case "end" :
-                End end = new End(file.next("#"), file.nextLine());
+                End end = new End(file.next(), file.next());
                 tree.insert(end);
                 break;
 
             case "puzzle" :
-                Puzzle puzzle = new Puzzle(file.next("#"), file.next("#"), file.next("#"),
-                                            file.next("#"), file.nextLine());
+                Puzzle puzzle = new Puzzle(file.next(), file.next(), file.next(), file.next(), file.next());
                 tree.insert(puzzle);
                 break;
         }
+        file.nextLine();
     }
 }

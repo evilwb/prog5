@@ -82,6 +82,6 @@ public class End extends Event
         System.out.println(description + "\nThanks for playing\nPress Enter to end the program");
         input.nextLine();
 
-        return "";
+        return null;
     }
 }
