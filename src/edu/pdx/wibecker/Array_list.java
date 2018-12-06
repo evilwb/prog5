@@ -1,3 +1,6 @@
+// William Becker - CS202 - 12/4/18
+// Array_list.java
+
 package edu.pdx.wibecker;
 
 public class Array_list

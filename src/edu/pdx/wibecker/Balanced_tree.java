@@ -1,11 +1,7 @@
-// William Becker - CS202 - 11/29/18
+// William Becker - CS202 - 12/4/18
 // Balanced_tree.java
 
 package edu.pdx.wibecker;
-
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 
 public class Balanced_tree
 {
@@ -132,51 +128,6 @@ public class Balanced_tree
                 display(root.children[2]);
                 root.data[2].display();
                 display(root.children[3]);
-            }
-        }
-    }
-
-    public void write_all(BufferedWriter file)
-    {
-        try
-        {
-            file = new BufferedWriter(new FileWriter("./tree.txt"));
-            write_all(this.root, file);
-            file.close();
-        }
-        catch (IOException error)
-        {
-            System.out.println(error);
-        }
-    }
-
-    private void write_all(Node root, BufferedWriter file) throws IOException
-    {
-        if(root != null)
-        {
-            if(root.size == 1)
-            {
-                write_all(root.children[0], file);
-                root.data[0].write(file);
-                write_all(root.children[1], file);
-            }
-            else if(root.size == 2)
-            {
-                write_all(root.children[0], file);
-                root.data[0].write(file);
-                write_all(root.children[1], file);
-                root.data[1].write(file);
-                write_all(root.children[2], file);
-            }
-            else
-            {
-                write_all(root.children[0], file);
-                root.data[0].write(file);
-                write_all(root.children[1], file);
-                root.data[1].write(file);
-                write_all(root.children[2], file);
-                root.data[2].write(file);
-                write_all(root.children[3], file);
             }
         }
     }

@@ -1,4 +1,4 @@
-// William Becker - CS202 - 11/29/18
+// William Becker - CS202 - 12/5/18
 // Main.java
 
 package edu.pdx.wibecker;
@@ -34,9 +34,6 @@ public class Main
             System.out.println(error);
         }
 
-        boolean running = true;
-        char response;
-
         next_event = file.nextLine();
         while(file.hasNextLine())
         {
@@ -53,22 +50,6 @@ public class Main
 
         System.out.println("Path through the events:");
         list.display();
-    }
-
-    private void edit_event()
-    {
-        String event_name;
-        Event selected_event;
-
-        System.out.print("Enter the event name: ");
-        event_name = input.nextLine();
-
-        selected_event = tree.retrieve(event_name);
-        if(selected_event != null)
-        {
-
-            selected_event.edit();
-        }
     }
 
     private void add_event(Scanner file)
